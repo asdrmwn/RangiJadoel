@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rangi Jadoel | Kue Rangi Khas Betawi</title>
+<meta name="description" content="Kenali Rangi Jadoel, kue rangi khas Betawi dengan perpaduan rasa gurih dan saus gula merah. Hubungi kami untuk informasi produk dan pemesanan.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rangi Jadoel | Kue Rangi Khas Betawi">
+<meta property="og:description" content="Kue rangi khas Betawi dengan perpaduan rasa gurih dan saus gula merah. Hubungi kami via WhatsApp untuk informasi produk dan pemesanan.">
+<meta property="og:url" content="https://rangijadoel.co.id">
+<meta property="og:locale" content="id_ID">
+<link rel="canonical" href="https://rangijadoel.co.id">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Rangi Jadoel","url":"https://rangijadoel.co.id","inLanguage":"id","description":"Kue rangi khas Betawi dengan saus gula merah."}</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🥮%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<style>
+:root{--cream:#fbf3e4;--cream2:#f3e5c8;--brown:#3b2314;--gula:#7a3b12;--orange:#d9701c;--on-orange:#fff;--card:#fffaf0;--muted:#6b4d3a;--line:#e6d3b0;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--cream:#1f130b;--cream2:#2b1a0f;--brown:#f6e8d0;--gula:#e8a266;--orange:#e8832f;--on-orange:#1f130b;--card:#2a1a10;--muted:#d2b99d;--line:#4a3220}}
+:root[data-theme="dark"]{--cream:#1f130b;--cream2:#2b1a0f;--brown:#f6e8d0;--gula:#e8a266;--orange:#e8832f;--on-orange:#1f130b;--card:#2a1a10;--muted:#d2b99d;--line:#4a3220}
+html{scroll-behavior:smooth;scroll-padding-top:5rem;height:100%}
+body{background:var(--cream);color:var(--brown);font-family:Nunito,system-ui,sans-serif;font-size:17px;line-height:1.65;margin:0;overflow-x:hidden;-webkit-text-size-adjust:100%}img,svg{max-width:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--cream);z-index:60}
+h1,h2,h3,.serif{font-family:Fraunces,Georgia,serif;line-height:1.15}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;text-align:center;line-height:1.3;gap:.5rem;border-radius:999px;padding:.8rem 1.4rem;font-weight:700;transition:transform .15s,background .15s}
+.btn:active{transform:scale(.97)}
+.btn-wa{background:var(--orange);color:var(--on-orange)}.btn-wa:hover{filter:brightness(1.08)}
+.btn-line{border:2px solid var(--gula);color:var(--gula)}.btn-line:hover{background:var(--gula);color:var(--cream)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.sauce{animation:drip 1.6s ease-out both}
+@keyframes drip{from{transform:translateY(-14px);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.sauce{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+/* ===== KONFIGURASI PUSAT: ganti di sini saja ===== */
+const CONFIG = {
+  waNumber: "6288289548687",            // nomor WhatsApp bisnis: awali 62, tanpa +, spasi, atau 0
+  brand: "Rangi Jadoel",
+  product: { name: "Kue Rangi Saus Gula Merah", price: "Rp15.000" },
+  // Isi URL foto asli (mis. "img/rangi-1.jpg"). Kosong = tampil ilustrasi placeholder.
+  images: { hero: "image/1.jpg", gallery: ["image/2.jpg", "image/3.jpg", "image/4.jpg", "image/1.jpg"], product: "image/1.jpg" },
+  socials: [ // isi url untuk menampilkan tautan; kosong = disembunyikan
+    { name: "Instagram", url: "" }, { name: "TikTok", url: "" }
+  ]
+};
+const wa = (msg) => "https://wa.me/6288289548687" + CONFIG.waNumber + "?text=" + encodeURIComponent(msg);
+const MSG_GENERAL = "Halo Rangi Jadoel, saya ingin bertanya tentang produk dan pemesanan kue rangi.";
+const MSG_PRODUCT = "Halo Rangi Jadoel, saya tertarik memesan " + CONFIG.product.name + (CONFIG.product.price.includes("X") ? "" : " (" + CONFIG.product.price + ")") + ". Boleh minta informasi harga dan cara pemesanannya?";
+
+const h = React.createElement, { useState, useEffect } = React;
+const ICONS = {
+  menu: "M4 6h16|M4 12h16|M4 18h16", x: "M18 6 6 18|m6 6 12 12", chev: "m6 9 6 6 6-6",
+  wa: "M7.9 20A9 9 0 1 0 4 16.1L2 22Z",
+  flame: "M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z",
+  heart: "M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z",
+  users: "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2|M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8|M22 21v-2a4 4 0 0 0-3-3.87|M16 3.13a4 4 0 0 1 0 7.75",
+  spark: "M12 3l1.9 5.8L20 10.7l-6.1 1.9L12 18l-1.9-5.4L4 10.7l6.1-1.9z"
+};
+const Icon = ({ n, s = 22 }) => h("svg", { width: s, height: s, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": true },
+  ICONS[n].split("|").map((d, i) => h("path", { d, key: i })));
+
+const WaButton = ({ msg = MSG_GENERAL, children, cls = "btn btn-wa" }) =>
+  h("a", { href: wa(msg), target: "_blank", rel: "noopener noreferrer", className: cls }, h(Icon, { n: "wa", s: 20 }), children);
+
+/* Foto atau ilustrasi placeholder */
+const Photo = ({ src, alt, v = 0, lazy = true, className = "" }) => src
+  ? h("img", { src, alt, loading: lazy ? "lazy" : "eager", decoding: "async", className: "w-full h-full object-cover " + className })
+  : h("svg", { role: "img", "aria-label": alt + " (foto placeholder)", viewBox: "0 0 400 300", className: "w-full h-full " + className, preserveAspectRatio: "xMidYMid slice" },
+    h("defs", null,
+      h("radialGradient", { id: "bg" + v, cx: ".5", cy: ".4", r: ".8" }, h("stop", { offset: "0", stopColor: "#f6d9a8" }), h("stop", { offset: "1", stopColor: "#c98a4b" })),
+      h("linearGradient", { id: "kue" + v, x1: "0", y1: "0", x2: "1", y2: "1" }, h("stop", { offset: "0", stopColor: "#e9a755" }), h("stop", { offset: "1", stopColor: "#9a5a22" })),
+      h("linearGradient", { id: "sc" + v, x1: "0", y1: "0", x2: "0", y2: "1" }, h("stop", { offset: "0", stopColor: "#8a3f10" }), h("stop", { offset: "1", stopColor: "#4a1d06" }))),
+    h("rect", { width: 400, height: 300, fill: "url(#bg" + v + ")" }),
+    h("g", { transform: "translate(200 160) rotate(" + (v * 9 - 12) + ") scale(" + (1 + v * 0.07) + ")" },
+      h("ellipse", { cx: 0, cy: 10, rx: 135, ry: 26, fill: "#3b2314", opacity: .25 }),
+      h("path", { d: "M-130 0 Q0 -130 130 0 L120 14 Q0 30 -120 14Z", fill: "url(#kue" + v + ")" }),
+      [-80, -40, 0, 40, 80].map(x => h("path", { key: x, d: "M" + x + " -6 Q" + x + " -70 " + (x * .5) + " -105", stroke: "#7a3b12", strokeWidth: 3, fill: "none", opacity: .35 })),
+      h("path", { className: "sauce", d: "M-90 -52 Q0 -100 90 -52 Q82 -34 66 -40 Q60 -10 48 -38 Q20 -26 0 -42 Q-20 -22 -34 -40 Q-52 -30 -90 -52Z", fill: "url(#sc" + v + ")" }),
+      h("ellipse", { cx: -30, cy: -66, rx: 24, ry: 5, fill: "#fff", opacity: .35 })));
+
+const NAV = [["Beranda", "#beranda"], ["Tentang Kue Rangi", "#tentang"], ["Keunggulan", "#keunggulan"], ["Galeri", "#galeri"], ["FAQ", "#faq"]];
+
+const Navbar = () => {
+  const [open, setOpen] = useState(false);
+  return h("header", { className: "sticky z-50 border-b", style: { top: "env(safe-area-inset-top,0px)", background: "var(--cream)", borderColor: "var(--line)" } },
+    h("div", { className: "mx-auto flex max-w-6xl items-center justify-between px-5 py-3" },
+      h("a", { href: "#beranda", className: "serif text-2xl font-extrabold", style: { color: "var(--gula)" } }, CONFIG.brand),
+      h("nav", { "aria-label": "Navigasi utama", className: "hidden items-center gap-6 lg:flex" },
+        NAV.map(([t, l]) => h("a", { key: l, href: l, className: "font-semibold hover:underline" }, t)),
+        h(WaButton, { cls: "btn btn-wa !py-2" }, "Pesan Sekarang")),
+      h("button", { className: "flex h-11 w-11 items-center justify-center lg:hidden", "aria-label": open ? "Tutup menu" : "Buka menu", "aria-expanded": open, onClick: () => setOpen(!open) }, h(Icon, { n: open ? "x" : "menu", s: 26 }))),
+    open && h("nav", { "aria-label": "Menu seluler", className: "flex max-h-[80vh] flex-col gap-1 overflow-y-auto border-t px-5 pb-5 pt-2 lg:hidden", style: { borderColor: "var(--line)" } },
+      NAV.map(([t, l]) => h("a", { key: l, href: l, onClick: () => setOpen(false), className: "py-3 text-lg font-semibold" }, t)),
+      h(WaButton, { cls: "btn btn-wa mt-2 justify-center" }, "Pesan Sekarang")));
+};
+
+const Hero = () => h("section", { id: "beranda", className: "mx-auto grid max-w-6xl items-center gap-8 px-5 py-8 sm:py-12 lg:grid-cols-2 lg:gap-10 lg:py-20" },
+  h("div", null,
+    h("h1", { className: "text-[2rem] font-extrabold sm:text-5xl lg:text-6xl", style: { color: "var(--gula)" } }, "Kue Rangi Khas Betawi, Gurihnya Bikin Kangen!"),
+    h("p", { className: "mt-5 max-w-lg text-lg", style: { color: "var(--muted)" } }, "Kenali kelezatan jajanan tradisional Betawi dengan perpaduan kue rangi yang gurih dan lelehan saus gula merah yang menggugah selera."),
+    h("div", { className: "mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap" },
+      h(WaButton, { cls: "btn btn-wa w-full sm:w-auto" }, "Pesan via WhatsApp"),
+      h("a", { href: "#tentang", className: "btn btn-line w-full sm:w-auto" }, "Kenali Kue Rangi"))),
+  h("div", { className: "aspect-[4/3] overflow-hidden rounded-[2rem] shadow-lg", style: { boxShadow: "0 18px 40px -18px rgba(59,35,20,.45)" } },
+    h(Photo, { src: CONFIG.images.hero, alt: "Kue rangi khas Betawi dengan saus gula merah", lazy: false })));
+
+const Title = ({ children, sub }) => h("div", { className: "mb-10 max-w-2xl" },
+  h("h2", { className: "text-3xl font-extrabold sm:text-4xl", style: { color: "var(--gula)" } }, children),
+  sub && h("p", { className: "mt-3", style: { color: "var(--muted)" } }, sub));
+
+const About = () => h("section", { id: "tentang", style: { background: "var(--cream2)" } },
+  h("div", { className: "mx-auto max-w-6xl px-5 py-12 sm:py-16" },
+    h(Title, null, "Mengenal Kue Rangi, Jajanan Legendaris Betawi"),
+    h("div", { className: "grid gap-8 md:grid-cols-2", style: { maxWidth: "72ch" } },
+      h("p", null, "Kue rangi adalah jajanan tradisional Betawi yang masih banyak dicari sampai sekarang. Bentuknya sederhana, tetapi rasanya punya tempat tersendiri bagi para penikmat jajanan Betawi."),
+      h("p", null, "Bahan utamanya berupa tepung sagu atau tapioka dan kelapa parut. Komposisi resepnya bisa berbeda dari satu pembuat ke pembuat lain."),
+      h("p", null, "Adonan dipanggang di atas cetakan khusus sampai matang dan beraroma harum. Hasilnya gurih di bagian luar dan terasa kelapa di setiap gigitan."),
+      h("p", null, "Ciri khasnya adalah saus gula merah yang manis. Perpaduan gurih dan manis inilah yang membuat kue rangi mudah dikenang."))));
+
+const FEATS = [
+  ["flame", "Cita rasa tradisional khas Betawi", "Jajanan yang dekat dengan kenangan masa kecil dan kebiasaan jajan warga Betawi."],
+  ["heart", "Perpaduan gurih dan manis", "Kue yang gurih bertemu lelehan saus gula merah yang manis."],
+  ["spark", "Aroma khas hasil pemanggangan", "Proses panggang di cetakan khusus menghadirkan aroma yang menggoda."],
+  ["users", "Camilan bersama keluarga", "Cocok dinikmati ramai-ramai sebagai teman ngobrol santai."]
+];
+const Features = () => h("section", { id: "keunggulan", className: "mx-auto max-w-6xl px-5 py-16" },
+  h(Title, null, "Kenapa Kue Rangi Selalu Bikin Kangen?"),
+  h("div", { className: "grid gap-5 sm:grid-cols-2 lg:grid-cols-4" },
+    FEATS.map(([ic, t, d]) => h("article", { key: t, className: "rounded-3xl p-6", style: { background: "var(--card)", border: "1px solid var(--line)" } },
+      h("span", { className: "mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl", style: { background: "var(--orange)", color: "var(--on-orange)" } }, h(Icon, { n: ic })),
+      h("h3", { className: "text-xl font-bold" }, t),
+      h("p", { className: "mt-2 text-base", style: { color: "var(--muted)" } }, d)))));
+
+const Product = () => h("section", { id: "menu", style: { background: "var(--cream2)" } },
+  h("div", { className: "mx-auto max-w-6xl px-5 py-16" },
+    h(Title, null, "Kenalan dengan Kelezatan Rangi Jadoel"),
+    h("article", { className: "grid overflow-hidden rounded-[2rem] md:grid-cols-2", style: { background: "var(--card)", border: "1px solid var(--line)" } },
+      h("div", { className: "aspect-[4/3] md:aspect-auto md:min-h-[320px]" }, h(Photo, { src: CONFIG.images.product, alt: "Kue rangi saus gula merah produk Rangi Jadoel", v: 1 })),
+      h("div", { className: "flex flex-col justify-center gap-4 p-7 sm:p-10" },
+        h("h3", { className: "text-2xl font-extrabold sm:text-3xl" }, CONFIG.product.name),
+        h("p", { style: { color: "var(--muted)" } }, "Kue rangi khas Betawi dengan siraman saus gula merah. Hubungi kami untuk menanyakan ukuran, varian, dan ketersediaan."),
+        h("p", { className: "serif text-3xl font-extrabold", style: { color: "var(--gula)" } }, CONFIG.product.price),
+        h("div", null, h(WaButton, { msg: MSG_PRODUCT, cls: "btn btn-wa w-full sm:w-auto" }, "Pesan Sekarang"))))));
+
+const GAL = [["Kue rangi khas Betawi yang baru dipanggang", "Baru dipanggang"], ["Detail tekstur kue rangi panggang", "Detail tekstur"], ["Saus gula merah dituangkan di atas kue rangi", "Saus gula merah dituang"], ["Kue rangi saus gula merah siap disajikan", "Siap disajikan"]];
+const Gallery = () => h("section", { id: "galeri", className: "mx-auto max-w-6xl px-5 py-16" },
+  h(Title, { sub: "Ganti ilustrasi ini dengan foto produk asli pada konfigurasi." }, "Menggoda Selera dalam Setiap Gigitan"),
+  h("div", { className: "grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4" },
+    GAL.map(([alt, cap], i) => h("figure", { key: cap, className: "m-0" },
+      h("div", { className: "aspect-square overflow-hidden rounded-3xl" }, h(Photo, { src: CONFIG.images.gallery[i], alt, v: i + 2 })),
+      h("figcaption", { className: "mt-2 text-sm font-semibold", style: { color: "var(--muted)" } }, cap)))));
+
+const Cta = () => h("section", { className: "px-5 py-6" },
+  h("div", { className: "mx-auto max-w-6xl rounded-[2rem] px-6 py-14 text-center sm:px-12", style: { background: "var(--gula)", color: "#fff7ea" } },
+    h("h2", { className: "text-3xl font-extrabold sm:text-4xl" }, "Lagi Ngidam Jajanan Tradisional?"),
+    h("p", { className: "mx-auto mt-4 max-w-xl text-lg", style: { opacity: .92 } }, "Yuk, kenalan lebih dekat dengan kue rangi khas Betawi dari Rangi Jadoel. Hubungi kami melalui WhatsApp untuk informasi produk dan pemesanan."),
+    h("div", { className: "mt-8" }, h("a", { href: wa(MSG_GENERAL), target: "_blank", rel: "noopener noreferrer", className: "btn w-full sm:w-auto", style: { background: "#fff7ea", color: "#5a2a0c" } }, h(Icon, { n: "wa", s: 20 }), "Pesan Rangi Jadoel via WhatsApp"))));
+
+const FAQS = [
+  ["Apa itu kue rangi?", "Kue rangi adalah jajanan tradisional khas Betawi yang dipanggang di cetakan khusus dan biasanya disajikan dengan saus gula merah."],
+  ["Apa bahan utama kue rangi?", "Bahan utamanya tepung sagu atau tapioka dan kelapa parut. Komposisi resep dapat berbeda antar pembuat."],
+  ["Seperti apa rasa kue rangi?", "Rasanya gurih dengan aroma panggang dan tekstur kelapa, lalu berpadu dengan saus gula merah yang manis."],
+  ["Bagaimana cara memesan Rangi Jadoel?", "Klik tombol WhatsApp di halaman ini. Pesan sudah terisi otomatis, lalu tim kami akan membantu soal informasi produk dan pemesanan."],
+  ["Apakah Rangi Jadoel melayani pemesanan di Tangerang Selatan?", "Silakan tanyakan lewat WhatsApp untuk memastikan jangkauan layanan dan area pemesanan."]
+];
+const Faq = () => {
+  const [o, setO] = useState(0);
+  return h("section", { id: "faq", className: "mx-auto max-w-3xl px-5 py-16" },
+    h(Title, null, "Pertanyaan yang Sering Ditanyakan"),
+    h("div", { className: "flex flex-col gap-3" }, FAQS.map(([q, a], i) => h("div", { key: q, className: "rounded-2xl", style: { background: "var(--card)", border: "1px solid var(--line)" } },
+      h("h3", { className: "!font-sans text-lg font-bold" },
+        h("button", { className: "flex w-full items-center justify-between gap-4 px-5 py-4 text-left", "aria-expanded": o === i, "aria-controls": "faq" + i, onClick: () => setO(o === i ? -1 : i) },
+          q, h("span", { style: { transform: o === i ? "rotate(180deg)" : "none", transition: "transform .2s" } }, h(Icon, { n: "chev" })))),
+      o === i && h("p", { id: "faq" + i, className: "px-5 pb-5", style: { color: "var(--muted)" } }, a)))));
+};
+
+const Footer = () => {
+  const soc = CONFIG.socials.filter(s => s.url);
+  return h("footer", { className: "mt-8 px-5 pb-28 pt-12", style: { background: "var(--cream2)" } },
+    h("div", { className: "mx-auto grid max-w-6xl gap-8 md:grid-cols-3" },
+      h("div", null, h("p", { className: "serif text-2xl font-extrabold", style: { color: "var(--gula)" } }, CONFIG.brand),
+        h("p", { className: "mt-2", style: { color: "var(--muted)" } }, "Kuliner tradisional Betawi: kue rangi dengan saus gula merah.")),
+      h("nav", { "aria-label": "Navigasi footer", className: "flex flex-col gap-1" }, NAV.map(([t, l]) => h("a", { key: l, href: l, className: "font-semibold hover:underline" }, t))),
+      h("div", { className: "flex flex-col items-start gap-3" },
+        h(WaButton, null, "Chat WhatsApp"),
+        soc.length > 0 && h("div", { className: "flex gap-4" }, soc.map(s => h("a", { key: s.name, href: s.url, target: "_blank", rel: "noopener noreferrer", className: "font-semibold underline" }, s.name))))),
+    h("p", { className: "mx-auto mt-10 max-w-6xl text-sm", style: { color: "var(--muted)" } }, "© " + new Date().getFullYear() + " Rangi Jadoel. Semua hak dilindungi."));
+};
+
+const Floating = () => h("a", { href: wa(MSG_GENERAL), target: "_blank", rel: "noopener noreferrer", "aria-label": "Chat WhatsApp Rangi Jadoel",
+  className: "fixed z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-lg", style: { right: "1rem", bottom: "calc(1rem + env(safe-area-inset-bottom,0px))", background: "#1fa855", color: "#fff" } }, h(Icon, { n: "wa", s: 28 }));
+
+const App = () => h(React.Fragment, null, h(Navbar), h("main", null, h(Hero), h(About), h(Features), h(Product), h(Gallery), h(Cta), h(Faq)), h(Footer), h(Floating));
+ReactDOM.createRoot(document.getElementById("root")).render(h(App));
+</script>
+</body>
+</html>
