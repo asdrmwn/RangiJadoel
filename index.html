@@ -50,7 +50,7 @@ const CONFIG = {
     { name: "Instagram", url: "" }, { name: "TikTok", url: "" }
   ]
 };
-const wa = (msg) => "https://wa.me/6288289548687" + CONFIG.waNumber + "?text=" + encodeURIComponent(msg);
+const wa = (msg) => "https://wa.me/" + CONFIG.waNumber + "?text=" + encodeURIComponent(msg);
 const MSG_GENERAL = "Halo Rangi Jadoel, saya ingin bertanya tentang produk dan pemesanan kue rangi.";
 const MSG_PRODUCT = "Halo Rangi Jadoel, saya tertarik memesan " + CONFIG.product.name + (CONFIG.product.price.includes("X") ? "" : " (" + CONFIG.product.price + ")") + ". Boleh minta informasi harga dan cara pemesanannya?";
 
