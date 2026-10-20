@@ -45,7 +45,7 @@ const CONFIG = {
   brand: "Rangi Jadoel",
   product: { name: "Kue Rangi Saus Gula Merah", price: "Rp15.000" },
   // Isi URL foto asli (mis. "img/rangi-1.jpg"). Kosong = tampil ilustrasi placeholder.
-  images: { hero: "image/1.jpg", gallery: ["image/kue2.JPG", "image/kue3.JPG", "image/kue4.JPG", "image/1.jpg"], product: "image/1.jpg" },
+  images: { hero: "image/1.jpg", gallery: ["image/kue2.JPG", "image/kue3.JPG", "image/kue4.jpg", "image/1.jpg"], product: "image/1.jpg" },
   socials: [ // isi url untuk menampilkan tautan; kosong = disembunyikan
     { name: "Instagram", url: "" }, { name: "TikTok", url: "" }
   ]
@@ -151,7 +151,7 @@ const Product = () => h("section", { id: "menu", style: { background: "var(--cre
 
 const GAL = [["Kue rangi khas Betawi yang baru dipanggang", "Baru dipanggang"], ["Detail tekstur kue rangi panggang", "Detail tekstur"], ["Saus gula merah dituangkan di atas kue rangi", "Saus gula merah dituang"], ["Kue rangi saus gula merah siap disajikan", "Siap disajikan"]];
 const Gallery = () => h("section", { id: "galeri", className: "mx-auto max-w-6xl px-5 py-16" },
-  h(Title, { sub: "Ganti ilustrasi ini dengan foto produk asli pada konfigurasi." }, "Menggoda Selera dalam Setiap Gigitan"),
+  h(Title, { sub: "" }, "Menggoda Selera dalam Setiap Gigitan"),
   h("div", { className: "grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4" },
     GAL.map(([alt, cap], i) => h("figure", { key: cap, className: "m-0" },
       h("div", { className: "aspect-square overflow-hidden rounded-3xl" }, h(Photo, { src: CONFIG.images.gallery[i], alt, v: i + 2 })),
